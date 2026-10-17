@@ -4,9 +4,10 @@ Platform agensi pembuatan website dan aplikasi berbasis web profesional dengan s
 
 ---
 
-## 🌐 Demo Interaktif Live
-- **URL Demo**: [https://maoneart.my.id/projek1/](https://maoneart.my.id/projek1/)
+## 🌐 Demo Interaktif & Sumber Kode
+- **URL Demo Langsung**: [https://maoneart.my.id/webcraft-agency/](https://maoneart.my.id/webcraft-agency/) *(Alternatif: [https://maoneart.my.id/projek1/](https://maoneart.my.id/projek1/))*
 - **Unduh Source Code (.zip)**: [https://maoneart.my.id/webcraft-agency.zip](https://maoneart.my.id/webcraft-agency.zip)
+- **Repositori GitHub**: [https://github.com/maoneart/webcraft-agency](https://github.com/maoneart/webcraft-agency)
 
 ---
 
@@ -20,72 +21,129 @@ Platform agensi pembuatan website dan aplikasi berbasis web profesional dengan s
 
 ---
 
-## 👥 5 Peran Pengguna (Multi-Role Access Control)
+## 👥 5 Akun Pengguna Bawaan (Multi-Role Access Control)
 | Role | Email Demo | Password | Ruang Lingkup & Tanggung Jawab |
 | :--- | :--- | :--- | :--- |
-| **Super Admin** | `admin@webcraft.id` | `admin123` | Overview omzet, alokasi PM & Developer, pantau COGS modal |
-| **Project Manager (PM)** | `pm@webcraft.id` | `pm123456` | Review brief klien, verifikasi scope revisi, sprint roadmap |
-| **Developer / Lead** | `dev@webcraft.id` | `dev123456` | Pengerjaan fitur, publikasi link server staging, input vault AES-256 |
-| **Finance** | `finance@webcraft.id` | `finance123` | Pantau arus kas masuk, invoice split billing, pencatatan beban modal riil (COGS) |
-| **Klien Portal** | `klien@webcraft.id` | `klien123` | Isi brief kebutuhan, digital sign-off 5 milestone, buka brankas, cetak BAST |
+| **Super Admin** | `admin@webcraft.id` | `admin123` | Executive dashboard, ringkasan omzet, alokasi PM & Developer, pantau beban modal riil (COGS) |
+| **Project Manager (PM)** | `pm@webcraft.id` | `pm123456` | Review brief kebutuhan bisnis, verifikasi ruang lingkup tiket revisi, roadmap sprint proyek |
+| **Developer / Lead** | `dev@webcraft.id` | `dev123456` | Pengerjaan fitur, publikasi link server staging, input aset akun ke brankas terenkripsi |
+| **Finance** | `finance@webcraft.id` | `finance123` | Pantau arus kas masuk, invoice split billing, pencatatan beban modal riil (COGS domain/server/plugin) |
+| **Klien Portal** | `klien@webcraft.id` | `klien123` | Isi brief kebutuhan, digital sign-off 5 milestone, buka brankas kredensial, cetak BAST resmi |
 
 ---
 
-## 📋 5 Milestone Alur Kerja (Workflow Pipeline)
-1. **Fase 1: Review Brief & Konsep Sitemap**  
-   Pengumpulan identitas brand, preferensi warna, aset logo, dan pemetaan halaman setelah DP 50% terverifikasi.
-2. **Fase 2: Desain UI/UX & Wireframing**  
-   Perancangan visual layout responsif di Figma, tipografi, dan sign-off digital desain.
-3. **Fase 3: Slicing Kode & Pengembangan Sistem**  
-   Implementasi frontend Tailwind CSS dan logika backend database (Laravel MVC).
-4. **Fase 4: Pengujian di Server Staging & Evaluasi Klien**  
-   Pementasan website pada subdomain staging untuk live review, pengetesan fitur, dan pengajuan tiket revisi (2x gratis vs add-on Rp 200.000).
-5. **Fase 5: Pelunasan, Handover Kredensial, & BAST Resmi**  
-   Pelunasan Termin 2 (50%), auto-unlock Brankas Kredensial terenkripsi AES-256, dan penerbitan Berita Acara Serah Terima (BAST).
+## 🚀 Panduan Instalasi (Cara Pasang)
+
+### Pilihan 1: Menggunakan Docker + PostgreSQL 15 (Rekomendasi Dosen & Penguji)
+
+1. **Prasyarat**: Pastikan Docker Engine & Docker Compose telah terpasang pada komputer/laptop Anda.
+2. **Kloning & Masuk ke Folder**:
+   ```bash
+   git clone https://github.com/maoneart/webcraft-agency.git
+   cd webcraft-agency
+   ```
+3. **Konfigurasi Environment**:
+   ```bash
+   cp .env.example .env
+   ```
+4. **Build & Jalankan Container**:
+   ```bash
+   docker compose up -d --build
+   ```
+5. **Inisialisasi Database**:
+   ```bash
+   docker compose exec laravel_app php artisan key:generate
+   docker compose exec laravel_app php artisan migrate:fresh --seed
+   ```
+6. **Akses Aplikasi**: Buka browser di `http://localhost:8000`.
 
 ---
 
-## 🚀 Cara Menjalankan dengan Docker (Rekomendasi Dosen / Penguji)
+### Pilihan 2: Menggunakan PHP Native / SQLite / Termux Android
 
-### 1. Prasyarat
-- Docker Engine & Docker Compose terpasang pada komputer / laptop penguji.
-
-### 2. Jalankan Kontainer
-```bash
-# Clone atau ekstrak direktori webcraft-agency
-cd webcraft-agency
-
-# Salin konfigurasi environment
-cp .env.example .env
-
-# Build dan jalankan seluruh container (Laravel + PostgreSQL 15)
-docker compose up -d --build
-
-# Generate App Key
-docker compose exec laravel_app php artisan key:generate
-
-# Jalankan migrasi dan seeder database
-docker compose exec laravel_app php artisan migrate:fresh --seed
-```
-
-### 3. Akses Aplikasi
-- Buka browser: `http://localhost:8000`
-- Gunakan salah satu kredensial akun di atas atau klik tombol 1-Click Quick Login pada halaman `/login`.
+1. **Install Dependensi & Konfigurasi**:
+   ```bash
+   composer install
+   cp .env.example .env
+   php artisan key:generate
+   ```
+2. **Setup Database SQLite**:
+   ```bash
+   # Di file .env, pastikan DB_CONNECTION=sqlite
+   touch database/database.sqlite
+   php artisan migrate:fresh --seed
+   ```
+3. **Jalankan Development Server**:
+   ```bash
+   php artisan serve
+   # Buka http://127.0.0.1:8000
+   ```
 
 ---
 
-## ⚡ Cara Menjalankan Lokal (PHP Native / SQLite / Termux)
-```bash
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate:fresh --seed --database=sqlite
-php artisan serve
-```
+## 📖 Panduan Cara Pemakaian Platform (Workflow Step-by-Step)
+
+Platform ini mengintegrasikan seluruh siklus bisnis agensi web development dari kalkulasi hingga serah terima:
+
+### 1. Simulasi Estimasi Biaya (Kalkulator Dinamis)
+- Akses halaman utama pada tab **Kalkulator Biaya**.
+- Pilih paket dasar (misal: *Company Profile* atau *E-Commerce*).
+- Pilih tambahan add-on (Domain, Hosting NVMe, Payment Gateway, SEO, dll).
+- Sistem secara real-time menghitung total investasi, estimasi hari kerja, serta pembagian **Termin 1 (DP 50%)** dan **Termin 2 (Pelunasan 50%)**.
+- Klik **Buat Pesanan & Lanjut ke Ruang Kerja**.
+
+### 2. Pembayaran Termin 1 (DP 50%)
+- Di ruang kerja pesanan, Anda akan melihat invoice Termin 1 berstatus **BELUM DIBAYAR**.
+- Pilih kanal pembayaran simulasi (misal: *QRIS Instant* atau *BCA VA*), lalu klik **Simulasi Bayar**.
+- Sistem otomatis mengubah invoice menjadi **LUNAS (PAID)** dan mengaktifkan tahapan pengisian brief proyek.
+
+### 3. Pengisian Brief Kebutuhan Klien
+- Masuk ke formulir brief proyek.
+- Isi nama brand, tagline, preferensi palet warna, target audiens, dan unggah logo.
+- Kirim brief untuk ditinjau oleh tim agensi.
+
+### 4. Peninjauan Brief oleh Project Manager (PM)
+- Masuk/ganti peran sebagai **Project Manager** (`pm@webcraft.id` / `pm123456`).
+- Buka dashboard PM untuk melihat antrean brief masuk.
+- PM dapat menekan **Terima Brief (Mulai Dev)** untuk menyetujui, atau **Minta Revisi** jika informasi kurang lengkap.
+- Persetujuan ini otomatis membuka **Fase 2: Desain UI/UX**.
+
+### 5. Pelaksanaan Milestone & Digital Sign-Off Klien
+- Alur kerja terbagi dalam 5 fase terukur:
+  - **Fase 1**: Review Brief & Sitemap.
+  - **Fase 2**: Desain UI/UX & Wireframing.
+  - **Fase 3**: Slicing Kode & Backend.
+  - **Fase 4**: Server Staging & Evaluasi Klien.
+  - **Fase 5**: Pelunasan & Handover Kredensial.
+- Pada setiap fase yang berstatus **ACTIVE**, klien atau PM dapat menekan tombol **Sign-Off Digital**.
+- Sistem menampilkan konfirmasi **MaoneArt Glassmorphism Modal** dan mencatat audit trail (waktu dan status persetujuan) ke database.
+
+### 6. Pengujian Server Staging & Tiket Revisi
+- Pada Fase 4, tim Developer mempublikasikan link server staging untuk dievaluasi oleh klien.
+- Klien dapat mengajukan catatan revisi melalui form tiket revisi:
+  - **Kuota Gratis**: Setiap paket memiliki kuota gratis (default 2x).
+  - **Add-on Revisi Berbayar**: Jika kuota gratis habis, sistem otomatis menerbitkan invoice add-on revisi sebesar Rp 200.000.
+- Tim Developer merespons dan menyelesaikan tiket secara tercatat.
+
+### 7. Pelunasan Termin 2 & Pembukaan Brankas (Vault AES-256)
+- Setelah Fase 4 disetujui (Sign-off Staging), klien diarahkan melunasi invoice **Termin 2 (Pelunasan 50%)**.
+- Lakukan simulasi pelunasan invoice Termin 2.
+- **Gated Release Protocol**: Brankas kredensial (*cPanel, WordPress Admin, Database*) yang tadinya terkunci (**GATED LOCKED**) akan seketika terbuka (**UNLOCKED**).
+- Tombol **Dekripsi Sandi (AES-256)** dapat ditekan untuk melihat username dan password produksi yang didekripsi dari database.
+
+### 8. Penerbitan & Cetak Berita Acara Serah Terima (BAST)
+- Setelah Termin 2 lunas, tombol **Cetak BAST Digital** akan aktif.
+- Klik tombol tersebut untuk membuka dokumen resmi BAST lengkap dengan nomor surat BAST, identitas pihak pertama dan pihak kedua, audit trail sign-off 5 milestone, serta legalitas tanda tangan digital.
+- Dokumen siap dicetak langsung atau disimpan sebagai PDF (`Ctrl + P`).
+
+### 9. Manajemen Keuangan & Beban Modal (Finance Dashboard)
+- Ganti peran ke **Finance** (`finance@webcraft.id` / `finance123`).
+- Lihat rekonsiliasi arus kas masuk, piutang invoice tertunda, dan form pencatatan biaya pokok penjualan (COGS) riil untuk pembelian domain, hosting, lisensi, atau tenaga kerja freelance.
+- Sistem otomatis menghitung margin laba bersih (*Net Profit Margin*).
 
 ---
 
 ## 📜 Kepatuhan Standar Dokumen
-- **SRS / PRD**: Sesuai ISO/IEC/IEEE 29148:2018 (`/sdcard/Download/PRD_SRS_Jasa_Website.pdf`).
-- **Gated Release Security**: Standar OWASP & enkripsi AES-256-CBC.
-- **Digital Handover**: Form Berita Acara Serah Terima (BAST) siap cetak / PDF.
+- **Standar Rekayasa Kebutuhan**: ISO/IEC/IEEE 29148:2018 (`PRD_SRS_Jasa_Website.pdf`).
+- **Keamanan Data Kredensial**: Enkripsi AES-256-CBC dengan prinsip *Least Privilege & Gated Access*.
+- **Desain UI Antarmuka**: MaoneArt Glassmorphism Standard dengan modal dialog simetris 2-kolom (`grid grid-cols-2 gap-3 w-full`).
